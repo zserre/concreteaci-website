@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Concrete ACI | Asfeld Construction Inc. – Minneapolis, MN</title>
+  <meta name="description" content="Asfeld Construction Inc. specializes in decorative and traditional concrete in Minneapolis and the surrounding area. 30+ years of experience." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb;
+      --gray-400: #9ca3af; --gray-600: #4b5563; --gray-700: #374151; --gray-900: #111827;
+      --amber: #d97706; --amber-lt: #fbbf24; --white: #ffffff;
+      --radius: 0.75rem; --shadow: 0 4px 24px rgba(0,0,0,.10);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--gray-700); background: var(--white); line-height: 1.65; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(17,24,39,.92); backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--white); text-decoration: none; }
+    .nav-logo span { color: var(--amber-lt); }
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+    .nav-links a { color: var(--gray-200); text-decoration: none; font-size: .88rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--amber-lt); }
+    .nav-cta { background: var(--amber); color: var(--white) !important; padding: .4rem 1rem; border-radius: 6px; }
+    .nav-cta:hover { background: var(--amber-lt) !important; color: var(--gray-900) !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+    @media(max-width:860px) {
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--gray-900); padding: 1.5rem 2rem; gap: 1.2rem; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+    }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(17,24,39,.75) 0%, rgba(17,24,39,.45) 60%, rgba(217,119,6,.30) 100%),
+        url('http://www.concreteaci.com/wp-content/uploads/2012/04/IMG_2407-resized.jpg') center/cover no-repeat;
+    }
+    .hero-content { max-width: 720px; padding: 8rem 2rem 4rem; margin-left: clamp(2rem, 8vw, 10rem); }
+    .hero-eyebrow { display: inline-block; font-size: .78rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--amber-lt); margin-bottom: 1rem; }
+    .hero-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.6rem, 5.5vw, 4.2rem); color: var(--white); line-height: 1.12; margin-bottom: 1.25rem; }
+    .hero-content h1 em { font-style: normal; color: var(--amber-lt); }
+    .hero-content p { font-size: 1.1rem; color: rgba(255,255,255,.82); max-width: 520px; margin-bottom: 2rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: .8rem 1.8rem; border-radius: 8px; font-weight: 600; font-size: .95rem; text-decoration: none; transition: all .2s; }
+    .btn-primary { background: var(--amber); color: var(--white); }
+    .btn-primary:hover { background: var(--amber-lt); color: var(--gray-900); transform: translateY(-1px); }
+    .btn-outline { border: 2px solid rgba(255,255,255,.55); color: var(--white); }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,.1); }
+    .hero-stats { position: absolute; bottom: 2.5rem; left: clamp(2rem, 8vw, 10rem); display: flex; gap: 2.5rem; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--amber-lt); font-weight: 700; line-height: 1; }
+    .stat-label { font-size: .78rem; color: rgba(255,255,255,.65); text-transform: uppercase; letter-spacing: 1px; margin-top: .2rem; }
+
+    /* SHARED SECTION */
+    section { padding: 6rem 2rem; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-tag { font-size: .72rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--amber); margin-bottom: .6rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); color: var(--gray-900); line-height: 1.2; margin-bottom: 1.25rem; }
+    .section-subtitle { font-size: 1.05rem; color: var(--gray-600); max-width: 600px; margin-bottom: 3.5rem; }
+
+    /* SERVICES */
+    #services { background: var(--gray-50); }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.75rem; }
+    .service-card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: transform .25s, box-shadow .25s; }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,.14); }
+    .service-card-img { width: 100%; height: 200px; object-fit: cover; background: #374151; }
+    .service-card-body { padding: 1.75rem; }
+    .service-card-body h3 { font-size: 1.2rem; font-weight: 700; color: var(--gray-900); margin-bottom: .6rem; }
+    .service-card-body p { font-size: .95rem; color: var(--gray-600); margin-bottom: 1.25rem; }
+    .service-list { list-style: none; display: flex; flex-wrap: wrap; gap: .4rem; }
+    .service-list li { background: var(--gray-100); color: var(--gray-700); font-size: .78rem; font-weight: 500; padding: .3rem .75rem; border-radius: 999px; }
+    .card-link { display: inline-flex; align-items: center; gap: .35rem; margin-top: 1.2rem; font-size: .88rem; font-weight: 600; color: var(--amber); text-decoration: none; transition: gap .2s; }
+    .card-link:hover { gap: .6rem; }
+
+    /* TECHNIQUES */
+    #techniques { background: var(--white); }
+    .techniques-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+    .technique-card { border: 1.5px solid var(--gray-200); border-radius: var(--radius); padding: 1.75rem; transition: border-color .2s, box-shadow .2s; }
+    .technique-card:hover { border-color: var(--amber); box-shadow: 0 4px 20px rgba(217,119,6,.12); }
+    .technique-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--gray-900); margin-bottom: .6rem; display: flex; align-items: center; gap: .5rem; }
+    .technique-icon { font-size: 1.2rem; }
+    .technique-card p { font-size: .9rem; color: var(--gray-600); line-height: 1.6; }
+
+    /* GALLERY */
+    #gallery { background: var(--gray-900); }
+    #gallery .section-tag { color: var(--amber-lt); }
+    #gallery .section-title { color: var(--white); }
+    #gallery .section-subtitle { color: rgba(255,255,255,.65); }
+
+    .gallery-filters { display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .filter-btn { padding: .45rem 1.1rem; border-radius: 999px; border: 1.5px solid rgba(255,255,255,.2); background: transparent; color: rgba(255,255,255,.7); font-size: .82rem; font-weight: 500; cursor: pointer; transition: all .2s; font-family: inherit; }
+    .filter-btn:hover, .filter-btn.active { background: var(--amber); border-color: var(--amber); color: var(--white); }
+
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: .75rem; }
+    .gallery-item {
+      aspect-ratio: 1; overflow: hidden; border-radius: 8px; cursor: pointer; position: relative;
+      background: #1f2937;
+    }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s; display: block; }
+    .gallery-item:hover img { transform: scale(1.07); }
+    .gallery-item::after {
+      content: '⤢'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; color: white; background: rgba(0,0,0,.35); opacity: 0; transition: opacity .2s;
+    }
+    .gallery-item:hover::after { opacity: 1; }
+
+    /* LIGHTBOX */
+    .lightbox { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,.92); align-items: center; justify-content: center; }
+    .lightbox.open { display: flex; }
+    .lightbox-img { max-width: 90vw; max-height: 90vh; border-radius: 8px; object-fit: contain; box-shadow: 0 20px 60px rgba(0,0,0,.6); }
+    .lightbox-close { position: absolute; top: 1.25rem; right: 1.5rem; background: none; border: none; color: white; font-size: 2rem; cursor: pointer; line-height: 1; padding: .25rem; }
+    .lightbox-prev, .lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,.12); border: none; color: white; font-size: 1.8rem; cursor: pointer; padding: .75rem 1rem; border-radius: 8px; transition: background .2s; }
+    .lightbox-prev { left: 1rem; }
+    .lightbox-next { right: 1rem; }
+    .lightbox-prev:hover, .lightbox-next:hover { background: rgba(255,255,255,.25); }
+    .lightbox-counter { position: absolute; bottom: 1.25rem; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,.6); font-size: .85rem; }
+
+    /* ABOUT */
+    #about { background: var(--gray-50); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    @media(max-width:768px) { .about-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+    .about-img-wrap { position: relative; }
+    .about-img-wrap img { width: 100%; border-radius: var(--radius); box-shadow: var(--shadow); object-fit: cover; }
+    .about-badge { position: absolute; bottom: -1.25rem; right: -1.25rem; background: var(--amber); color: var(--white); border-radius: var(--radius); padding: 1.25rem 1.5rem; text-align: center; box-shadow: 0 8px 24px rgba(217,119,6,.4); }
+    .about-badge-num { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 800; line-height: 1; }
+    .about-badge-label { font-size: .72rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; opacity: .9; }
+    .about-text p { color: var(--gray-600); margin-bottom: 1rem; }
+    .timeline { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+    .timeline-item { display: flex; gap: 1rem; }
+    .timeline-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--amber); margin-top: .5rem; flex-shrink: 0; }
+    .timeline-item p { font-size: .92rem; color: var(--gray-600); }
+    .timeline-item strong { color: var(--gray-900); }
+
+    /* REPAIR */
+    #repair { background: linear-gradient(135deg, var(--gray-900) 0%, #1f2937 100%); color: var(--white); }
+    #repair .section-title { color: var(--white); }
+    #repair .section-subtitle { color: rgba(255,255,255,.7); }
+    .repair-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+    .repair-card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius); padding: 1.75rem; transition: background .2s; }
+    .repair-card:hover { background: rgba(255,255,255,.1); }
+    .repair-icon { width: 44px; height: 44px; background: var(--amber); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; font-size: 1.3rem; }
+    .repair-card h4 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: .6rem; }
+    .repair-card ul { list-style: none; }
+    .repair-card li { font-size: .88rem; color: rgba(255,255,255,.7); padding: .2rem 0; }
+    .repair-card li::before { content: '→ '; color: var(--amber-lt); }
+
+    /* CTA */
+    #cta { background: var(--amber); padding: 4.5rem 2rem; text-align: center; }
+    #cta h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.5rem); color: var(--white); margin-bottom: .75rem; }
+    #cta p { color: rgba(255,255,255,.85); font-size: 1.05rem; margin-bottom: 2rem; }
+    .btn-white { background: var(--white); color: var(--amber); }
+    .btn-white:hover { background: var(--gray-100); transform: translateY(-1px); }
+
+    /* CONTACT */
+    #contact { background: var(--gray-50); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; }
+    @media(max-width:768px) { .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+    .contact-info h3 { font-size: 1.15rem; font-weight: 700; color: var(--gray-900); margin-bottom: 1.25rem; }
+    .contact-item { display: flex; gap: .85rem; margin-bottom: 1.25rem; align-items: flex-start; }
+    .contact-icon { width: 38px; height: 38px; flex-shrink: 0; background: var(--amber); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1rem; }
+    .contact-item-text { font-size: .95rem; color: var(--gray-600); line-height: 1.5; }
+    .contact-item-text strong { display: block; color: var(--gray-900); font-weight: 600; font-size: .85rem; text-transform: uppercase; letter-spacing: .5px; margin-bottom: .15rem; }
+    form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media(max-width:520px) { .form-row { grid-template-columns: 1fr; } }
+    label { font-size: .82rem; font-weight: 600; color: var(--gray-700); margin-bottom: .3rem; display: block; letter-spacing: .3px; }
+    input, textarea, select { width: 100%; padding: .75rem 1rem; border: 1.5px solid var(--gray-200); border-radius: 8px; font-family: inherit; font-size: .95rem; color: var(--gray-900); background: var(--white); transition: border-color .2s, box-shadow .2s; outline: none; }
+    input:focus, textarea:focus, select:focus { border-color: var(--amber); box-shadow: 0 0 0 3px rgba(217,119,6,.15); }
+    textarea { resize: vertical; min-height: 120px; }
+    .form-submit { background: var(--amber); color: var(--white); border: none; cursor: pointer; font-family: inherit; font-size: 1rem; font-weight: 600; padding: .85rem 2rem; border-radius: 8px; transition: background .2s, transform .2s; }
+    .form-submit:hover { background: var(--amber-lt); color: var(--gray-900); transform: translateY(-1px); }
+
+    /* FOOTER */
+    footer { background: var(--gray-900); color: rgba(255,255,255,.6); text-align: center; padding: 2rem; font-size: .85rem; }
+    footer strong { color: var(--white); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#hero">Concrete <span>ACI</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#techniques">Techniques</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-content">
+      <span class="hero-eyebrow">Minneapolis &amp; Surrounding Area</span>
+      <h1>Traditional &amp; <em>Decorative</em> Concrete Experts</h1>
+      <p>Asfeld Construction Inc. is a family-owned business with over 30 years of experience bringing creativity and craftsmanship to every concrete project.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
+        <a href="#gallery" class="btn btn-outline">View Our Work</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">30+</div><div class="stat-label">Years in Business</div></div>
+      <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Yrs Combined Exp.</div></div>
+      <div class="stat"><div class="stat-num">A+</div><div class="stat-label">BBB Rating</div></div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-inner">
+      <p class="section-tag">What We Do</p>
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-subtitle">From ornate decorative finishes to solid traditional foundations, we handle every concrete need with craftsmanship honed over decades.</p>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <img class="service-card-img" src="http://www.concreteaci.com/wp-content/uploads/2011/03/stampedconcrete_greyashlar1-280x80.jpg" alt="Decorative stamped concrete" />
+          <div class="service-card-body">
+            <h3>Decorative Concrete</h3>
+            <p>Transform your space with beautiful, custom decorative finishes that make a lasting impression.</p>
+            <ul class="service-list">
+              <li>Stamping</li><li>Staining</li><li>Form Liners</li>
+              <li>Overlays &amp; Toppings</li><li>Exposed Aggregate</li><li>Broom Finish</li>
+            </ul>
+            <a href="#contact" class="card-link">Request a Quote →</a>
+          </div>
+        </div>
+        <div class="service-card reveal">
+          <img class="service-card-img" src="http://www.concreteaci.com/wp-content/uploads/2011/03/concretecountertop5-280x80.jpg" alt="Traditional concrete" />
+          <div class="service-card-body">
+            <h3>Traditional Concrete</h3>
+            <p>Solid, durable work built on decades of expertise — from foundations to pool decks.</p>
+            <ul class="service-list">
+              <li>Poured Foundations</li><li>Floors</li><li>Driveways</li><li>Steps &amp; Curbs</li>
+              <li>Pool Decks</li><li>Patios</li><li>Retaining Walls</li><li>Sidewalks</li><li>ICF Foundations</li>
+            </ul>
+            <a href="#contact" class="card-link">Request a Quote →</a>
+          </div>
+        </div>
+        <div class="service-card reveal">
+          <img class="service-card-img" src="http://www.concreteaci.com/wp-content/uploads/2011/03/concreterepair-280x80.jpg" alt="Concrete repair" />
+          <div class="service-card-body">
+            <h3>Repair &amp; Maintenance</h3>
+            <p>Extend the life of your existing concrete with expert restoration and protective treatments.</p>
+            <ul class="service-list">
+              <li>Crack Repair</li><li>Resurfacing</li><li>Sealing</li>
+              <li>Grinding</li><li>Cleaning</li><li>Waxing &amp; Buffing</li>
+            </ul>
+            <a href="#contact" class="card-link">Request a Quote →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNIQUES -->
+  <section id="techniques">
+    <div class="section-inner">
+      <p class="section-tag">How We Do It</p>
+      <h2 class="section-title">Our Techniques</h2>
+      <p class="section-subtitle">We apply a wide range of concrete methods — from classic broom finishes to hand-crafted countertops. Here's a look at the techniques that define our work.</p>
+      <div class="techniques-grid">
+        <div class="technique-card reveal">
+          <h3><span class="technique-icon">🪨</span> Stamped Concrete</h3>
+          <p>A pattern or texture is pressed into fresh concrete to resemble stone, slate, flagstone, brick, tile, or wood. Stamped concrete is popular because it replicates premium materials at a lower cost while offering more color control and greater durability.</p>
+        </div>
+        <div class="technique-card reveal">
+          <h3><span class="technique-icon">🎨</span> Staining</h3>
+          <p>Either an acid or water-based stain is applied to color a concrete surface, giving it a rich, marbled look. Each installation is unique because the stain reacts naturally with the concrete.</p>
+        </div>
+        <div class="technique-card reveal">
+          <h3><span class="technique-icon">🧱</span> Form Liners</h3>
+          <p>A mold is used to cast a textured design or pattern directly into concrete walls or surfaces, enabling detailed architectural finishes and custom shapes that would be difficult to achieve any other way.</p>
+        </div>
+        <div class="technique-card reveal">
+          <h3><span class="technique-icon">📐</span> Overlays &amp; Toppings</h3>
+          <p>A thin layer of polymer-modified concrete is applied over an existing floor or wall. Overlays can be troweled smooth (microtoppings) or stamped — either way, they give a brand-new look at a fraction of the cost of full replacement.</p>
+        </div>
+        <div class="technique-card reveal">
+          <h3><span class="technique-icon">✨</span> Exposed Aggregate</h3>
+          <p>The top cream layer of the surface is removed to expose the underlying aggregate. The surface is retarded, then washed the next day, acid-washed, and finished with a glossy sealer to enhance the natural shine of the stone.</p>
+        </div>
+        <div class="technique-card reveal">
+          <h3><span class="technique-icon">🧹</span> Broom Finish</h3>
+          <p>The classic exterior finish. A broom is dragged across fresh concrete to create a slip-resistant texture. Applied early for a more aggressive grip or later for a subtler finish — a durable, time-tested choice for driveways and walkways.</p>
+        </div>
+        <div class="technique-card reveal">
+          <h3><span class="technique-icon">🌈</span> Colored Concrete</h3>
+          <p>Concrete can be colored three primary ways: integral color mixed into the pour, color hardeners broadcast onto the surface, or stains applied by hand or spray. Each method produces a distinct look and depth of color.</p>
+        </div>
+        <div class="technique-card reveal">
+          <h3><span class="technique-icon">🏔️</span> Coloring Stamped Concrete</h3>
+          <p>Multiple colors are applied to stamped concrete to mimic natural stone — a base color in the mix, secondary colors worked in with trowels, then an accent color sprayed on during stamping to fill the low spots and emphasize the pattern.</p>
+        </div>
+        <div class="technique-card reveal">
+          <h3><span class="technique-icon">🍽️</span> Countertops &amp; Sinks</h3>
+          <p>Concrete countertops and sinks offer fully custom shapes, sizes, and colors for a one-of-a-kind look. Available as pre-cast (formed and finished in our shop, allowing high polish) or cast-in-place (poured on site, often cost-effective for large surfaces).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTO GALLERY -->
+  <section id="gallery">
+    <div class="section-inner">
+      <p class="section-tag">Our Work</p>
+      <h2 class="section-title">Photo Gallery</h2>
+      <p class="section-subtitle">Browse completed projects from across the Twin Cities — stamped patios, stained floors, driveways, countertops, and more.</p>
+
+      <div class="gallery-filters" id="gallery-filters">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="stamped">Stamped</button>
+        <button class="filter-btn" data-filter="driveway">Driveways</button>
+        <button class="filter-btn" data-filter="floor">Floors</button>
+        <button class="filter-btn" data-filter="other">Other</button>
+      </div>
+
+      <div class="gallery-grid" id="gallery-grid">
+        <!-- images injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lb-close">✕</button>
+    <button class="lightbox-prev" id="lb-prev">‹</button>
+    <img class="lightbox-img" id="lb-img" src="" alt="" />
+    <button class="lightbox-next" id="lb-next">›</button>
+    <div class="lightbox-counter" id="lb-counter"></div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-img-wrap reveal">
+          <img src="http://www.concreteaci.com/wp-content/uploads/2011/02/DadAndI-300x224.jpg" alt="Dennis and Ben Asfeld" />
+          <div class="about-badge">
+            <div class="about-badge-num">1981</div>
+            <div class="about-badge-label">Est. in Burnsville, MN</div>
+          </div>
+        </div>
+        <div class="about-text reveal">
+          <p class="section-tag">Our Story</p>
+          <h2 class="section-title">A Family Legacy in Concrete</h2>
+          <p>Asfeld Construction Incorporated was started in 1981 when Dennis Asfeld combined his knowledge of concrete and custom home building. His father Norb joined the company shortly after and served as a partner until retiring in 1998.</p>
+          <p>In the early 90s Dennis recognized poured walls as the future of concrete foundations — he was one of the first five contractors in the Twin Cities to adopt this technique. Now poured walls are the industry standard.</p>
+          <p>Before retiring, Norb spent his final years teaching his grandson Ben the art of concrete finishing. Ben went on to earn a degree in Construction Management from the University of Wisconsin–Stout, then trained in advanced techniques including decorative finishes, concrete countertops, and cast-in-place sinks.</p>
+          <p>Today Ben and Dennis are a team united by old-school craftsmanship and modern decorative expertise — with more than <strong>50 years of combined experience.</strong></p>
+          <div class="timeline">
+            <div class="timeline-item"><div class="timeline-dot"></div><p><strong>1981</strong> — Dennis Asfeld founds ACI in Burnsville, MN</p></div>
+            <div class="timeline-item"><div class="timeline-dot"></div><p><strong>Early 90s</strong> — ACI adopts poured wall foundation technique</p></div>
+            <div class="timeline-item"><div class="timeline-dot"></div><p><strong>2004</strong> — Ben &amp; Dennis expand into stamped decorative concrete</p></div>
+            <div class="timeline-item"><div class="timeline-dot"></div><p><strong>2006</strong> — Ben joins full-time with advanced decorative training</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REPAIR -->
+  <section id="repair">
+    <div class="section-inner">
+      <p class="section-tag" style="color:var(--amber-lt)">Restoration &amp; Care</p>
+      <h2 class="section-title">Repair &amp; Maintenance</h2>
+      <p class="section-subtitle">We bring worn or damaged concrete back to life with a full range of maintenance and restoration services.</p>
+      <div class="repair-grid">
+        <div class="repair-card reveal">
+          <div class="repair-icon">🧹</div>
+          <h4>Maintenance</h4>
+          <ul>
+            <li>Cleaning &amp; stain removal</li><li>Protection with sealers</li>
+            <li>Waxing &amp; buffing</li><li>Surface grinding</li>
+          </ul>
+        </div>
+        <div class="repair-card reveal">
+          <div class="repair-icon">🔧</div>
+          <h4>Restoration</h4>
+          <ul>
+            <li>Protective sealants &amp; coatings</li><li>Grinding &amp; leveling</li>
+            <li>Crack repair &amp; filling</li><li>Resurfacing</li><li>Patching &amp; filling</li>
+          </ul>
+        </div>
+        <div class="repair-card reveal">
+          <div class="repair-icon">🛡️</div>
+          <h4>Long-Term Protection</h4>
+          <ul>
+            <li>Penetrating sealers</li><li>Topical coatings</li>
+            <li>UV &amp; weather protection</li><li>Annual maintenance plans</li>
+          </ul>
+        </div>
+        <div class="repair-card reveal">
+          <div class="repair-icon">✨</div>
+          <h4>Surface Refinishing</h4>
+          <ul>
+            <li>Decorative overlays</li><li>Color restoration</li>
+            <li>Re-stamping &amp; re-staining</li><li>Anti-slip treatments</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="section-inner" style="text-align:center">
+      <h2>Ready to Start Your Project?</h2>
+      <p>Whether you're building new or restoring what you have, we'd love to talk. Serving Minneapolis and the surrounding area.</p>
+      <a href="#contact" class="btn btn-white">Get Your Free Estimate</a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner">
+      <p class="section-tag">Reach Out</p>
+      <h2 class="section-title">Contact Us</h2>
+      <p class="section-subtitle">Ready to get started? Fill out the form or reach us directly.</p>
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <h3>ACI Construction</h3>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div class="contact-item-text"><strong>Address</strong>13016 Penn Ave South<br />Burnsville, MN 55337, USA</div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div class="contact-item-text"><strong>Phone</strong><a href="tel:6128684671" style="color:var(--gray-600);text-decoration:none">612-868-4671</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div class="contact-item-text"><strong>Email</strong><a href="mailto:ben@concreteaci.com" style="color:var(--gray-600);text-decoration:none">ben@concreteaci.com</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📘</div>
+            <div class="contact-item-text"><strong>Facebook</strong><a href="http://www.facebook.com/pages/Asfeld-Construction-Inc/164757730300556" target="_blank" rel="noopener" style="color:var(--amber)">Asfeld Construction Inc.</a></div>
+          </div>
+        </div>
+        <form class="reveal" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div><label for="name">Your Name</label><input type="text" id="name" name="name" placeholder="John Smith" required /></div>
+            <div><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone" placeholder="612-555-0100" /></div>
+          </div>
+          <div><label for="email">Email Address</label><input type="email" id="email" name="email" placeholder="you@example.com" required /></div>
+          <div>
+            <label for="service">Service Interested In</label>
+            <select id="service" name="service">
+              <option value="">Select a service…</option>
+              <option>Decorative Concrete</option>
+              <option>Traditional Concrete</option>
+              <option>Concrete Repair &amp; Maintenance</option>
+              <option>Other / Not Sure</option>
+            </select>
+          </div>
+          <div><label for="message">Tell Us About Your Project</label><textarea id="message" name="message" placeholder="Describe your project, location, timeline…" required></textarea></div>
+          <button type="submit" class="form-submit">Send Message →</button>
+          <p id="form-msg" style="display:none;color:var(--amber);font-weight:600;margin-top:.5rem"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>Concrete ACI</strong> — Asfeld Construction Inc. &copy; <span id="yr"></span> · Burnsville, MN · <a href="tel:6128684671" style="color:var(--amber-lt)">612-868-4671</a></p>
+  </footer>
+
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Gallery data — thumbnail (150x150) + full-size (no size suffix)
+    const BASE = 'http://www.concreteaci.com/wp-content/uploads/';
+    const photos = [
+      { t: '2011/03/IMG_2407-150x150.jpg',                   f: '2011/03/IMG_2407.jpg',                   tag: 'stamped' },
+      { t: '2011/03/IMG_2917-150x150.jpg',                   f: '2011/03/IMG_2917.jpg',                   tag: 'stamped' },
+      { t: '2011/03/IMG_2924-150x150.jpg',                   f: '2011/03/IMG_2924.jpg',                   tag: 'stamped' },
+      { t: '2011/03/IMG_4370-150x150.jpg',                   f: '2011/03/IMG_4370.jpg',                   tag: 'stamped' },
+      { t: '2011/03/IMG_4907-150x150.jpg',                   f: '2011/03/IMG_4907.jpg',                   tag: 'stamped' },
+      { t: '2011/03/IMG_5216-150x150.jpg',                   f: '2011/03/IMG_5216.jpg',                   tag: 'stamped' },
+      { t: '2011/03/IMG_5228-150x150.jpg',                   f: '2011/03/IMG_5228.jpg',                   tag: 'stamped' },
+      { t: '2011/03/IMG_5354-150x150.jpg',                   f: '2011/03/IMG_5354.jpg',                   tag: 'stamped' },
+      { t: '2011/03/IMG_5363-150x150.jpg',                   f: '2011/03/IMG_5363.jpg',                   tag: 'stamped' },
+      { t: '2011/03/IMG_5388-150x150.jpg',                   f: '2011/03/IMG_5388.jpg',                   tag: 'stamped' },
+      { t: '2011/03/IMG_5535-150x150.jpg',                   f: '2011/03/IMG_5535.jpg',                   tag: 'stamped' },
+      { t: '2011/03/Stamped-with-different-color-border-150x150.jpg', f: '2011/03/Stamped-with-different-color-border.jpg', tag: 'stamped' },
+      { t: '2011/03/King-Driveway2-150x150.jpg',             f: '2011/03/King-Driveway2.jpg',             tag: 'driveway' },
+      { t: '2011/03/Ryan-Driveway-150x150.jpg',              f: '2011/03/Ryan-Driveway.jpg',              tag: 'driveway' },
+      { t: '2011/03/DSCN0136-150x150.jpg',                   f: '2011/03/DSCN0136.jpg',                   tag: 'driveway' },
+      { t: '2011/03/DSCN0165-150x150.jpg',                   f: '2011/03/DSCN0165.jpg',                   tag: 'driveway' },
+      { t: '2011/03/DSCN0169-150x150.jpg',                   f: '2011/03/DSCN0169.jpg',                   tag: 'driveway' },
+      { t: '2011/03/DSCN0175-150x150.jpg',                   f: '2011/03/DSCN0175.jpg',                   tag: 'driveway' },
+      { t: '2011/03/savage-floor-3-150x150.jpg',             f: '2011/03/savage-floor-3.jpg',             tag: 'floor' },
+      { t: '2011/03/Gray-Color-With-Broomed-Finish-150x150.jpg', f: '2011/03/Gray-Color-With-Broomed-Finish.jpg', tag: 'floor' },
+      { t: '2011/03/DSC02119-150x150.jpg',                   f: '2011/03/DSC02119.jpg',                   tag: 'floor' },
+      { t: '2011/03/DSC02121-150x150.jpg',                   f: '2011/03/DSC02121.jpg',                   tag: 'floor' },
+      { t: '2011/03/DSC02137-150x150.jpg',                   f: '2011/03/DSC02137.jpg',                   tag: 'floor' },
+      { t: '2011/03/P2230111-150x150.jpg',                   f: '2011/03/P2230111.jpg',                   tag: 'floor' },
+      { t: '2011/03/708-Lofts-1-150x150.jpg',               f: '2011/03/708-Lofts-1.jpg',               tag: 'floor' },
+      { t: '2011/03/Form-liners-Diamond-Lake-150x150.jpg',   f: '2011/03/Form-liners-Diamond-Lake.jpg',   tag: 'other' },
+      { t: '2011/03/IMG_1537-150x150.jpg',                   f: '2011/03/IMG_1537.jpg',                   tag: 'other' },
+      { t: '2011/03/IMG_1685-150x150.jpg',                   f: '2011/03/IMG_1685.jpg',                   tag: 'other' },
+      { t: '2011/03/IMG_1857-150x150.jpg',                   f: '2011/03/IMG_1857.jpg',                   tag: 'other' },
+      { t: '2011/03/IMG_1886-150x150.jpg',                   f: '2011/03/IMG_1886.jpg',                   tag: 'other' },
+      { t: '2011/03/IMG_2246-150x150.jpg',                   f: '2011/03/IMG_2246.jpg',                   tag: 'other' },
+      { t: '2011/03/IMG_2755-150x150.jpg',                   f: '2011/03/IMG_2755.jpg',                   tag: 'other' },
+      { t: '2011/03/IMG_2969-150x150.jpg',                   f: '2011/03/IMG_2969.jpg',                   tag: 'other' },
+      { t: '2011/03/IMG_2984-150x150.jpg',                   f: '2011/03/IMG_2984.jpg',                   tag: 'other' },
+      { t: '2011/03/IMG_3091-150x150.jpg',                   f: '2011/03/IMG_3091.jpg',                   tag: 'other' },
+      { t: '2011/03/IMG_33761-150x150.jpg',                  f: '2011/03/IMG_33761.jpg',                  tag: 'other' },
+      { t: '2011/03/IMG_3378-150x150.jpg',                   f: '2011/03/IMG_3378.jpg',                   tag: 'other' },
+      { t: '2011/03/IMG_3383-150x150.jpg',                   f: '2011/03/IMG_3383.jpg',                   tag: 'other' },
+      { t: '2011/03/IMG_3455-150x150.jpg',                   f: '2011/03/IMG_3455.jpg',                   tag: 'stamped' },
+      { t: '2011/03/IMG_3771-150x150.jpg',                   f: '2011/03/IMG_3771.jpg',                   tag: 'stamped' },
+      { t: '2011/03/IMG_3866-150x150.jpg',                   f: '2011/03/IMG_3866.jpg',                   tag: 'other' },
+      { t: '2011/03/IMG_4358-150x150.jpg',                   f: '2011/03/IMG_4358.jpg',                   tag: 'other' },
+      { t: '2011/03/IMG_4476-150x150.jpg',                   f: '2011/03/IMG_4476.jpg',                   tag: 'other' },
+      { t: '2011/03/IMG_4489-150x150.jpg',                   f: '2011/03/IMG_4489.jpg',                   tag: 'other' },
+      { t: '2011/03/IMG_4628-150x150.jpg',                   f: '2011/03/IMG_4628.jpg',                   tag: 'stamped' },
+      { t: '2011/03/IMG_4656-150x150.jpg',                   f: '2011/03/IMG_4656.jpg',                   tag: 'stamped' },
+      { t: '2011/03/IMG_4788-150x150.jpg',                   f: '2011/03/IMG_4788.jpg',                   tag: 'other' },
+      { t: '2011/03/IMG_4930-150x150.jpg',                   f: '2011/03/IMG_4930.jpg',                   tag: 'other' },
+      { t: '2011/03/IMG_5139-150x150.jpg',                   f: '2011/03/IMG_5139.jpg',                   tag: 'other' },
+      { t: '2011/03/IMG_5165-150x150.jpg',                   f: '2011/03/IMG_5165.jpg',                   tag: 'other' },
+      { t: '2011/03/IMG_5225-150x150.jpg',                   f: '2011/03/IMG_5225.jpg',                   tag: 'other' },
+      { t: '2011/03/IMG_5361-150x150.jpg',                   f: '2011/03/IMG_5361.jpg',                   tag: 'stamped' },
+      { t: '2011/03/IMG_5628-150x150.jpg',                   f: '2011/03/IMG_5628.jpg',                   tag: 'other' },
+      { t: '2011/03/IMG_6985-1-150x150.jpg',                 f: '2011/03/IMG_6985-1.jpg',                 tag: 'other' },
+      { t: '2011/03/DSCN0568-150x150.jpg',                   f: '2011/03/DSCN0568.jpg',                   tag: 'driveway' },
+      { t: '2014/07/IMG_5388-150x150.jpg',                   f: '2014/07/IMG_5388.jpg',                   tag: 'stamped' },
+      { t: '2014/12/IMG_0477-150x150.jpg',                   f: '2014/12/IMG_0477.jpg',                   tag: 'other' },
+      { t: '2014/12/IMG_0485-150x150.jpg',                   f: '2014/12/IMG_0485.jpg',                   tag: 'other' },
+      { t: '2014/12/IMG_0488-150x150.jpg',                   f: '2014/12/IMG_0488.jpg',                   tag: 'other' },
+      { t: '2014/12/IMG_4457-150x150.jpg',                   f: '2014/12/IMG_4457.jpg',                   tag: 'other' },
+      { t: '2014/12/IMG_4483-150x150.jpg',                   f: '2014/12/IMG_4483.jpg',                   tag: 'other' },
+      { t: '2014/12/IMG_4919-150x150.jpg',                   f: '2014/12/IMG_4919.jpg',                   tag: 'other' },
+      { t: '2014/12/IMG_5604-150x150.jpg',                   f: '2014/12/IMG_5604.jpg',                   tag: 'other' },
+    ];
+
+    let currentFilter = 'all';
+    let filtered = photos;
+    let currentIdx = 0;
+
+    function buildGallery(tag) {
+      currentFilter = tag;
+      filtered = tag === 'all' ? photos : photos.filter(p => p.tag === tag);
+      const grid = document.getElementById('gallery-grid');
+      grid.innerHTML = '';
+      filtered.forEach((p, i) => {
+        const div = document.createElement('div');
+        div.className = 'gallery-item';
+        div.dataset.index = i;
+        const img = document.createElement('img');
+        img.src = BASE + p.t;
+        img.alt = 'ACI Concrete project';
+        img.loading = 'lazy';
+        div.appendChild(img);
+        div.addEventListener('click', () => openLightbox(i));
+        grid.appendChild(div);
+      });
+    }
+
+    document.getElementById('gallery-filters').addEventListener('click', e => {
+      if (!e.target.classList.contains('filter-btn')) return;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      buildGallery(e.target.dataset.filter);
+    });
+
+    buildGallery('all');
+
+    // Lightbox
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    const lbCounter = document.getElementById('lb-counter');
+
+    function openLightbox(idx) {
+      currentIdx = idx;
+      lbImg.src = BASE + filtered[idx].f;
+      lbCounter.textContent = (idx + 1) + ' / ' + filtered.length;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+    function navigate(dir) {
+      currentIdx = (currentIdx + dir + filtered.length) % filtered.length;
+      lbImg.src = BASE + filtered[currentIdx].f;
+      lbCounter.textContent = (currentIdx + 1) + ' / ' + filtered.length;
+    }
+
+    document.getElementById('lb-close').addEventListener('click', closeLightbox);
+    document.getElementById('lb-prev').addEventListener('click', () => navigate(-1));
+    document.getElementById('lb-next').addEventListener('click', () => navigate(1));
+    lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') navigate(-1);
+      if (e.key === 'ArrowRight') navigate(1);
+    });
+
+    // Form
+    function handleSubmit(e) {
+      e.preventDefault();
+      const msg = document.getElementById('form-msg');
+      msg.textContent = '✓ Message sent! Ben will be in touch soon.';
+      msg.style.display = 'block';
+      e.target.reset();
+    }
+  </script>
+</body>
+</html>
